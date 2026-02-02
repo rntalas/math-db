@@ -12,7 +12,7 @@ class PageController extends Controller
     {
         $view = 'pages.'.($slug ?: 'home');
 
-        if (!view()->exists($view)) {
+        if (! view()->exists($view)) {
             abort(404);
         }
 

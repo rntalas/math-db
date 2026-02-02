@@ -1,12 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import 'tailwindcss';
 @tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-primary: 'Inter', sans-serif;
+}
+
+* {
+    @apply box-border font-primary;
+}
+
+a {
+    @apply cursor-pointer;
+}
+
+.btn {
+    @apply bg-black text-white rounded-full px-4 lg:px-8 py-1 lg:py-2.5 inline-flex items-center justify-center border lg:text-xl text-base transition-colors duration-200;
+}
+
+.btn:hover {
+    @apply bg-white text-black border-zinc-500 shadow-md scale-105;
+}
+
+html {
+    @apply text-base;
+}
+
+body {
+    @apply flex flex-col min-h-screen m-0;
+}
+
+[class*="border"] {
+    @apply border-zinc-200;
+}
+
+input {
+    @apply border hover:focus:border-zinc-500 outline-none bg-white hidden md:block md:w-48 xl:w-96;
 }
