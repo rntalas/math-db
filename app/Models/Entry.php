@@ -8,7 +8,8 @@ class Entry extends Model
 {
     protected $fillable = ['img', 'sol', 'lid'];
 
-    public function lesson() {
+    public function lesson()
+    {
         return $this->belongsTo(Lesson::class, 'lid');
     }
 }

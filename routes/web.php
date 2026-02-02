@@ -2,8 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-$routes = require __DIR__ . '/routes.php';
+Route::get('/{slug?}', static function ($slug = 'home') {
+    $view = 'pages.'.($slug ?? 'home');
 
-foreach($routes as $url => $route) {
-    Route::view($url, $route);
-}
+    if (! view()->exists($view)) {
+        abort(404);
+    }
+
+    $title = ucfirst(str_replace('-', ' ', $slug ?: 'home'));
+
+    return view($view, ['title' => $title]);
+})->where('slug', '.*')->name('page.show');
