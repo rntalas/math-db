@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -10,7 +9,6 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-        vue(),
     ],
     server: {
         host: "0.0.0.0",
@@ -19,6 +17,11 @@ export default defineConfig({
         origin: `${process.env.DDEV_PRIMARY_URL.replace(/:\d+$/, "")}:5173`,
         cors: {
             origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
+        },
+    },
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
 });
