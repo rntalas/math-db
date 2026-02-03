@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up()
+    {
+        Schema::create('lessons', function (Blueprint $table) {
+            $table->id();
+            $table->integer('number');
+
+            $table->foreignId('subject_id')
+                ->nullable()
+                ->constrained('subjects')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('lessons');
+    }
+};
