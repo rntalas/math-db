@@ -1,45 +1,36 @@
 import './bootstrap';
-import "../css/app.css";
-
+import '../css/app.css';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
-Alpine.data('localeSwitcher', () => ({
+const mapLocales = (locales) => {
+    return locales.map(locale => ({
+        id: locale.id,
+        code: locale.code,
+        name: locale.name,
+        image: locale.image?.startsWith('http') ? locale.image : `/${locale.image}`,
+    }));
+}
+
+Alpine.data('localeSwitcher', (locales) => ({
     open: false,
-    locales: [
-        { code: 'en', label: 'English' },
-        { code: 'el', label: 'Ελληνικά' }
-    ],
+    locales: mapLocales(locales),
+
     toggle() {
-        this.open = !this.open
+        this.open = !this.open;
     },
-    setLocale(code) {
-        window.location.href = `${window.location.pathname}?lang=${code}`
+
+    setLocale(locale) {
+        const path = window.location.pathname === '/'
+            ? ''
+            : window.location.pathname;
+        window.location.href = `${path}?lang=${locale.code}`;
     }
 }));
 
-Alpine.data('inputLocaleSwitcher', (Locales) => {
-    const localesData = Locales.map(locale => ({
-        id: locale.id,
-        name: locale.name,
-        image: locale.image.startsWith('http') ? locale.image : `/${locale.image}`
-    }));
-
-    return {
-        open: false,
-        localesData,
-        selectedLocale: localesData[0],
-        titles: {},
-        touched: {},
-
-        selectLocale(locale) {
-            this.selectedLocale = locale;
-            this.open = false;
-        }
-    }
+Alpine.data('localeForm', () => {
+    //
 });
-
-
 
 Alpine.start();
