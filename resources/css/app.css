@@ -6,6 +6,10 @@
     --font-primary: 'Inter', sans-serif;
 }
 
+[x-cloak] {
+    @apply hidden;
+}
+
 * {
     @apply box-border font-primary;
 }
@@ -38,6 +42,11 @@ main {
     @apply mb-16 lg:mb-20;
 }
 
-input[type=text] {
-    @apply border hover:border-zinc-500 focus:border-zinc-500 outline-none bg-zinc-100 border-zinc-300 px-4 py-2 focus:bg-white hover:bg-white hover:focus:shadow-md;
+button {
+    @apply cursor-pointer;
+}
+
+input[type=text],
+input[type=number] {
+    @apply border hover:border-zinc-500 focus:border-zinc-500 outline-none bg-zinc-100 border-zinc-300 px-4 py-2 focus:bg-white hover:bg-white focus:hover:shadow-md;
 }
