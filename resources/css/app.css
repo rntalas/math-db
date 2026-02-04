@@ -22,6 +22,10 @@ a {
     @apply bg-white text-black border-zinc-500 shadow-md;
 }
 
+.link {
+    @apply underline hover:no-underline inline;
+}
+
 html {
     @apply text-base;
 }
