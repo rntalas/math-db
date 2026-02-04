@@ -2,19 +2,19 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Locale;
 use Closure;
 use Illuminate\Support\Facades\App;
-use App\Models\Locale;
 
 class SetLocale
 {
     public function handle($request, Closure $next)
     {
-        $available = Locale::pluck('code')->toArray();
+        $available = Locale::query()->pluck('code')->toArray();
 
         $locale = $request->query('lang', session('locale', config('app.locale')));
 
-        if (!in_array($locale, $available, true)) {
+        if (! in_array($locale, $available, true)) {
             $locale = config('app.locale');
         }
 
