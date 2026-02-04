@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static create(array $validated)
- */
 class Subject extends Model
 {
-    protected $fillable = ['title',
-        'locale_id'
+    protected $fillable = [
+        'name',
+        'locale_id',
+        'units',
     ];
 }
