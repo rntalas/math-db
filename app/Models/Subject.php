@@ -9,5 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Subject extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title',
+        'locale_id'
+    ];
 }

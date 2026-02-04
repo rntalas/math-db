@@ -4,21 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PageController;
+use App\Models\Locale;
 
 class SubjectController extends Controller
 {
     public function create()
     {
-        return view('pages.subjects.create');
+        $locales = Locale::all();
+        return view('pages.subjects.create', compact('locales'));
     }
 
-    public function store(Request $request): \Illuminate\Http\RedirectResponse {
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'titles' => 'required|array',
+            'titles.*' => 'required|string|max:255',
         ]);
 
-        Subject::create($validated);
+        foreach ($validated['titles'] as $localeId => $title) {
+            Subject::create([
+                'title' => $title,
+                'locale_id' => $localeId,
+            ]);
+        }
 
         return redirect()->route('page.show', ['slug' => '']);
     }
