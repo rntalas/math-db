@@ -1,23 +1,28 @@
-<x-layout :title="$title">
+<x-layout title="Welcome!">
     <div
         class="flex justify-center mx-auto border border-zinc-400 h-180 w-135 rounded-xl bg-white p-8 shadow-xl relative">
         <div class="flex flex-col flex-1">
             <p class="mb-4">
-                <span class="text-xl mb-4">Welcome to <a href="/" class="font-bold hover:underline">Answer
-                        Pod</a>!</span><br>
-                <span class="text-lg">The best place to store textbook materials for your school subjects.</span>
+                <span class="text-xl mb-4">@lang('app.welcome')</span><br>
+                <span class="text-lg">@lang('app.description')</span>
             </p>
             @if ($subjects->count() > 0)
-            @else
-                <p class="text-lg">
-                    No subjects were found. To create a subject click <a href="/add-subject"
-                        class="underline hover:no-underline inline-block">here</a>.
-                </p>
-            @endif
-        </div>
+                <p>@lang('app.subjects.found')</p>
 
-        <div class="absolute bottom-0 mb-6">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" class="h-5 lg:h-10 w-auto">
+                <ul class="list-inside list-disc mb-4">
+                    @foreach ($subjects as $subject)
+                        <li>
+                            <a href="{{ url('subjects/' . $subject->id) }}" class="link">
+                                {{ $subject->title }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p>@lang('app.subjects.!found')</p>
+            @endif
+
+            <p>@lang('app.subjects.create')</p>
         </div>
     </div>
 </x-layout>
