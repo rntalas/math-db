@@ -11,10 +11,12 @@ return [
     'label' => [
         'name' => 'Όνομα:',
         'units' => 'Αριθμός Ενοτήτων:',
+        'description' => 'Περιγραφή:',
         'locale' => 'Language:',
     ],
     'placeholder' => [
         'name' => 'Μάθημα',
+        'description' => 'Περιγραφή',
     ],
     'error' => [
         'name' => [

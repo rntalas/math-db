@@ -11,10 +11,12 @@ return [
     'label' => [
         'name' => 'Name:',
         'units' => 'Number of units:',
+        'description' => 'Description:',
         'locale' => 'Γλώσσα:',
     ],
     'placeholder' => [
         'name' => 'Subject',
+        'description' => 'Description',
     ],
     'error' => [
         'name' => [
