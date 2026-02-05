@@ -20,7 +20,7 @@ class SubjectController extends ResourceController
 
     protected function routePrefix(): string
     {
-        return 'subjects';
+        return 'subject';
     }
 
     protected function validatedData(Request $request, ?int $id = null): array
