@@ -7,7 +7,7 @@ return [
     'subjects' => [
         'found' => 'Βρέθηκαν τα ακόλουθα μαθήματα:',
         '!found' => 'Δεν βρέθηκαν μαθήματα.',
-        'create' => 'Για να δημιουργήσετε ένα μάθημα, κάντε κλικ <a href="/subject/add" class="link">εδώ</a>.',
+        'create' => 'Για να δημιουργήσετε ένα μάθημα, κάντε κλικ <a href="/subject/create" class="link">εδώ</a>.',
     ],
     'placeholder' => [
         'search' => 'Αναζήτηση...',

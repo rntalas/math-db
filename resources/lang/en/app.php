@@ -7,7 +7,7 @@ return [
     'subjects' => [
         'found' => 'The following subjects were found:',
         '!found' => 'No subjects were found.',
-        'create' => 'To create a subject click <a href="/subject/add" class="link">here</a>.',
+        'create' => 'To create a subject click <a href="/subject/create" class="link">here</a>.',
     ],
     'placeholder' => [
         'search' => 'Search…',
