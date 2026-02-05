@@ -11,6 +11,7 @@ return [
     'label' => [
         'name' => 'Name:',
         'units' => 'Number of units:',
+        'locale' => 'Γλώσσα:',
     ],
     'placeholder' => [
         'name' => 'Subject',
