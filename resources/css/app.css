@@ -46,8 +46,17 @@ button {
     @apply cursor-pointer;
 }
 
+label {
+    @apply text-lg font-bold;
+}
+
+select,
+textarea,
 input[type=text],
-input[type=number],
-select {
+input[type=number] {
     @apply border hover:border-zinc-500 focus:border-zinc-500 outline-none bg-zinc-100 border-zinc-300 px-4 py-2 focus:bg-white hover:bg-white focus:hover:shadow-md;
+}
+
+textarea {
+    @apply resize-y;
 }
