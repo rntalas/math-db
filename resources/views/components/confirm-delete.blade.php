@@ -6,10 +6,14 @@
     </button>
 
     <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+        <div class="bg-white rounded-lg p-6 w-full max-w-sm relative">
             <h2 class="text-lg font-semibold mb-3">
                 {{ $title }}
             </h2>
+
+            <button type="button" class="absolute right-4 top-4" @click="open = false">
+                @svg('heroicon-s-x-mark', 'h-5 w-5')
+            </button>
 
             <p class="mb-5">
                 @lang('app.action-undone')
