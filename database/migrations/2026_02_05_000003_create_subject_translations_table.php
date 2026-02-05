@@ -17,6 +17,8 @@ return new class extends Migration
                 ->constrained('locales')
                 ->cascadeOnDelete();
             $table->string('name');
+            $table->string('description')
+                    ->nullable();
             $table->timestamps();
 
             $table->unique(['subject_id', 'locale_id']);
