@@ -11,7 +11,7 @@ return [
     'label' => [
         'name' => 'Όνομα:',
         'units' => 'Αριθμός Ενοτήτων:',
-        'locale' => 'Γλώσσα:',
+        'locale' => 'Language:',
     ],
     'placeholder' => [
         'name' => 'Μάθημα',
