@@ -11,25 +11,16 @@ return new class extends Migration
         Schema::create('entries', static function (Blueprint $table) {
             $table->id();
             $table->integer('number');
-            $table->text('statement')->nullable();
-            $table->text('solution')->nullable();
             $table->unsignedInteger('unit')->nullable();
 
             $table->foreignId('subject_id')
-                ->nullable()
                 ->constrained('subjects')
                 ->cascadeOnUpdate()
-                ->nullOnDelete();
-
-            $table->foreignId('locale_id')
-                ->nullable()
-                ->constrained('locales')
-                ->cascadeOnUpdate()
-                ->nullOnDelete();
+                ->cascadeOnDelete();
 
             $table->timestamps();
 
-            $table->unique(['subject_id', 'unit', 'number', 'locale_id']);
+            $table->unique(['subject_id', 'unit', 'number']);
         });
     }
 

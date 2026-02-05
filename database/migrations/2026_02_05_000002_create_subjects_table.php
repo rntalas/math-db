@@ -10,18 +10,8 @@ return new class extends Migration
     {
         Schema::create('subjects', static function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedInteger('units');
-
-            $table->foreignId('locale_id')
-                ->nullable()
-                ->constrained('locales')
-                ->cascadeOnUpdate()
-                ->nullOnDelete();
-
             $table->timestamps();
-
-            $table->unique(['name', 'locale_id']);
         });
     }
 
