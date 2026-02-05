@@ -1,6 +1,6 @@
 <x-layout :title="__('subject.create')">
     <h1 class="font-bold text-xl mb-4">@lang('subject.create')</h1>
-    <form action="{{ route('subjects.create') }}" method="POST" class="flex flex-col gap-4">
+    <form action="{{ route('subject.store') }}" method="POST" class="flex flex-col gap-4">
         @csrf
         <div class="flex flex-col gap-4 mb-4">
             <div class="flex flex-col gap-1">
@@ -21,7 +21,7 @@
 
             <input type="hidden" name="locale_id" value="1">
 
-            <input type="submit" value="Add Subject" class="btn mt-4">
+            <input type="submit" value="@lang('subject.button.add')" class="btn mt-4">
         </div>
     </form>
 </x-layout>
