@@ -57,6 +57,11 @@ class SubjectController extends ResourceController
                     ->where(fn ($query) => $query->where('locale_id', $localeId))
                     ->ignore($ignoreId),
             ],
+            'description' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
             'locale_id' => 'required|exists:locales,id',
         ], [
             'name.required' => __('subject.error.name.required'),
