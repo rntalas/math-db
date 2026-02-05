@@ -6,7 +6,7 @@ return [
     'entries' => 'You can see the entries per unit on the side menu. Otherwise, to create a new entry you can click <a href="entries/create" class="link">here</a>.',
     'button' => [
         'add' => 'Add subject',
-        'edit' => 'Edit subject',
+        'save' => 'Save changes',
     ],
     'label' => [
         'name' => 'Name:',
