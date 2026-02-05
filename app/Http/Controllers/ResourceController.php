@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Locale;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,11 @@ abstract class ResourceController extends Controller
 {
     abstract protected function modelClass(): string;
 
+    abstract protected function translationModelClass(): string;
+
     abstract protected function validatedData(Request $request, ?int $id = null): array;
+
+    abstract protected function validatedTranslationData(Request $request, ?int $id = null): array;
 
     public function create()
     {
@@ -19,7 +24,14 @@ abstract class ResourceController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $class = $this->modelClass();
-        $class::create($this->validatedData($request));
+        $translationClass = $this->translationModelClass();
+
+        $mainData = $this->validatedData($request);
+        $translationData = $this->validatedTranslationData($request);
+        $item = $class::create($mainData);
+
+        $translationData['locale_id'] = $request->input('locale_id');
+        $item->translations()->create($translationData);
 
         return redirect()->route('page.show', ['slug' => '']);
     }
@@ -28,25 +40,42 @@ abstract class ResourceController extends Controller
     {
         $class = $this->modelClass();
         $variable = strtolower(class_basename($class));
-        $$variable = $class::findOrFail($id);
+        $$variable = $class::with('translations')->findOrFail($id);
 
         return view($this->viewPath('view'), compact($variable));
     }
 
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $class = $this->modelClass();
         $variable = strtolower(class_basename($class));
-        $$variable = $class::findOrFail($id);
+        $$variable = $class::with('translations')->findOrFail($id);
 
-        return view($this->viewPath('edit'), compact($variable));
+        $locales = Locale::query()->get();
+        $selectedLocale = $request->query('locale', 1);
+
+        return view($this->viewPath('edit'), compact($variable, 'locales', 'selectedLocale'));
     }
 
     public function update(Request $request, $id): RedirectResponse
     {
         $class = $this->modelClass();
         $item = $class::findOrFail($id);
-        $item->update($this->validatedData($request, $id));
+
+        $mainData = $this->validatedData($request, $id);
+        $translationData = $this->validatedTranslationData($request, $id);
+        $localeId = $request->input('locale_id');
+
+        $item->update($mainData);
+
+        $translation = $item->translations()->where('locale_id', $localeId)->first();
+
+        if ($translation) {
+            $translation->update($translationData);
+        } else {
+            $translationData['locale_id'] = $localeId;
+            $item->translations()->create($translationData);
+        }
 
         return redirect()->route($this->routeName('show'), $id);
     }
