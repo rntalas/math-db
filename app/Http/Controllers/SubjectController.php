@@ -21,7 +21,7 @@ class SubjectController extends Controller
         $mainData = $this->validateMainData($request);
         $translationData = $this->validateTranslationData($request);
 
-        $subject = Subject::create($mainData);
+        $subject = Subject::query()->create($mainData);
         $subject->translations()->create($translationData);
 
         return redirect()->route('page.show', ['slug' => '']);
@@ -45,21 +45,21 @@ class SubjectController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
-        $subject = Subject::findOrFail($id);
+        $subject = Subject::query()->findOrFail($id);
         $localeId = $request->input('locale_id');
 
         $mainData = $this->validateMainData($request, $id);
         $translationData = $this->validateTranslationData($request, $id);
 
-        $subject->update($mainData);
+        $subject?->update($mainData);
 
-        $translation = $subject->translations()->where('locale_id', $localeId)->first();
+        $translation = $subject?->translations()->where('locale_id', $localeId)->first();
 
         if ($translation) {
             $translation->update($translationData);
         } else {
             $translationData['locale_id'] = $localeId;
-            $subject->translations()->create($translationData);
+            $subject?->translations()->create($translationData);
         }
 
         return redirect()->route('subject.show', $id);
@@ -67,8 +67,11 @@ class SubjectController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        $subject = Subject::findOrFail($id);
-        $subject->delete();
+        $subject = Subject::query()->findOrFail($id);
+
+        $subject?->entries()->delete();
+
+        $subject?->delete();
 
         return redirect()->route('page.show', ['slug' => '']);
     }

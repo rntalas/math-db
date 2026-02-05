@@ -53,4 +53,9 @@ class Subject extends Model
             fn () => Locale::where('code', $currentLocaleCode)->value('id') ?? config('app.default_locale_id', 1)
         );
     }
+
+    public function entries(): HasMany
+    {
+        return $this->hasMany(Entry::class);
+    }
 }
