@@ -24,13 +24,11 @@ abstract class ResourceController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $class = $this->modelClass();
-        $translationClass = $this->translationModelClass();
 
         $mainData = $this->validatedData($request);
         $translationData = $this->validatedTranslationData($request);
         $item = $class::create($mainData);
 
-        $translationData['locale_id'] = $request->input('locale_id');
         $item->translations()->create($translationData);
 
         return redirect()->route('page.show', ['slug' => '']);
