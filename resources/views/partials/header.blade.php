@@ -24,7 +24,7 @@
 
         <div class="flex justify-center items-center gap-4 lg:mr-20">
             <input type="text" placeholder="@lang('app.placeholder.search')"
-                class="hidden md:block md:w-48 xl:w-96 rounded-full bg-white!" name="lesson">
+                class="hidden md:block md:w-48 xl:w-96 rounded-full! bg-white!" name="lesson">
 
             <div class="w-10 h-10 rounded-full p-2 border border-zinc-200 bg-white cursor-pointer hover:shadow-md">
                 @svg('heroicon-o-magnifying-glass')
