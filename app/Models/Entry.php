@@ -12,4 +12,14 @@ class Entry extends Resource
     {
         return $this->hasMany(EntryTranslation::class);
     }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(EntryImage::class);
+    }
+
+    public function imagesByField(string $field): HasMany
+    {
+        return $this->hasMany(EntryImage::class)->where('field', $field);
+    }
 }
