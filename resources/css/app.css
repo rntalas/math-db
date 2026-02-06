@@ -4,6 +4,7 @@
 
 @theme {
     --font-primary: 'Inter', sans-serif;
+    --font-mono: monospace;
 }
 
 [x-cloak] {
@@ -11,7 +12,7 @@
 }
 
 * {
-    @apply box-border font-primary;
+    @apply box-border;
 }
 
 a {
@@ -35,7 +36,7 @@ html {
 }
 
 body {
-    @apply flex flex-col min-h-screen m-0 bg-zinc-100;
+    @apply flex flex-col min-h-screen m-0 bg-zinc-100 font-primary;
 }
 
 main {
@@ -54,9 +55,17 @@ select,
 textarea,
 input[type=text],
 input[type=number] {
-    @apply border hover:border-zinc-500 focus:border-zinc-500 outline-none bg-zinc-100 border-zinc-300 px-4 py-2 focus:bg-white hover:bg-white focus:hover:shadow-md;
+    @apply border hover:border-zinc-500 focus:border-zinc-500 outline-none bg-zinc-100 border-zinc-300 px-4 py-2 focus:bg-white hover:bg-white focus:hover:shadow-md rounded-xl;
 }
 
 textarea {
-    @apply resize-y;
+    @apply resize-y max-h-50;
+}
+
+[x-ref=editor] {
+    @apply border-none;
+
+    .cm-editor {
+        @apply h-full rounded-xl border-none;
+    }
 }
