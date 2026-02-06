@@ -1,5 +1,3 @@
-@vite(['resources/js/editor.js'])
-
 <x-layout :title="__('entry.create')">
     <h1 class="font-bold text-xl mb-4">@lang('entry.create')</h1>
     <form action="{{ route('entry.store') }}" method="POST" class="flex flex-col gap-4">
@@ -78,22 +76,21 @@
                             </button>
 
                             <button type="button" @click="option = 2"
-                                :class="option === 2 ?
+                                    :class="option === 2 ?
                                     'bg-gray-100 h-6 w-6 border border-zinc-200 p-1 rounded flex justify-center items-center' :
                                     'bg-white h-6 w-6 border border-zinc-200 p-1 rounded flex justify-center items-center hover:bg-gray-100'">
-                                @svg('heroicon-o-code-bracket', 'h-4 w-4')
+                                @svg('heroicon-o-photo', 'h-4 w-4')
                             </button>
                         </div>
                     </div>
 
                     <div x-show="option === 1">
-                        <textarea name="solution" :disabled="option !== 1" placeholder="@lang('entry.placeholder.solution')" class="w-full" cols="30"
+                        <textarea name="solution_text" :disabled="option !== 1" placeholder="@lang('entry.placeholder.solution')" class="w-full" cols="30"
                             rows="3"></textarea>
                     </div>
 
                     <div x-show="option === 2" x-cloak>
-                        <x-code-editor name="solution" label="HTML Code" language="html" height="h-96"
-                            :value="old('solution', '')" />
+                        <x-dropzone-file el="solution" name="solution_file"></x-dropzone-file>
                     </div>
                 </div>
 
