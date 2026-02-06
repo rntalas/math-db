@@ -3,7 +3,7 @@
         <h1 class="text-xl font-bold">{{ $subject->name }}</h1>
 
         <a href="{{ route('subject.edit', $subject) }}" title="@lang('app.edit')">
-            @svg('heroicon-s-pencil-square', 'h-5 w-5 cursor-pointer')
+            @svg('heroicon-s-pencil', 'h-5 w-5 cursor-pointer')
         </a>
 
         <x-confirm-delete :action="route('subject.destroy', $subject)" :title="__('subject.confirm')">
