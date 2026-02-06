@@ -59,7 +59,7 @@ input[type=number] {
 }
 
 textarea {
-    @apply resize-y max-h-50;
+    @apply resize-y min-h-20 max-h-50;
 }
 
 [x-ref=editor] {
