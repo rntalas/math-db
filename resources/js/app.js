@@ -49,4 +49,22 @@ Alpine.data('localeForm', (translations, defaultLocaleId) => ({
     }
 }));
 
+Alpine.data('imageUpload', (message = '') => ({
+    preview: null,
+    pick(e) {
+        const file = e.target.files[0]
+        if (!file) return
+
+        if (!['image/png', 'image/jpeg'].includes(file.type)) {
+            alert(message)
+            e.target.value = null
+            this.preview = null
+            return
+        }
+
+        this.preview && URL.revokeObjectURL(this.preview)
+        this.preview = URL.createObjectURL(file)
+    }
+}));
+
 Alpine.start();
