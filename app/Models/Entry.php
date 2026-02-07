@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entry extends Resource
 {
-    protected $fillable = ['number', 'unit', 'subject_id'];
+    protected $fillable = [
+        'number',
+        'unit',
+        'subject_id',
+        'statement',
+        'solution',
+        'field',
+        'path',
+        'position',
+        'locale_id',
+    ];
 
     public function translations(): HasMany
     {
