@@ -29,6 +29,10 @@
             <label for="units">@lang('subject.label.units')</label>
             <input type="number" id="units" name="units" min="1" max="100"
                 value="{{ $subject->units }}" class="rounded-xl w-fit">
+
+            @error('units')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <input type="hidden" name="locale_id" :value="selectedLocale">
