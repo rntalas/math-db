@@ -18,8 +18,8 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->tinyInteger('statement')->nullable();
-            $table->tinyInteger('solution')->nullable();
+            $table->tinyInteger('statement');
+            $table->tinyInteger('solution');
 
             $table->timestamps();
 
